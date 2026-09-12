@@ -1,22 +1,20 @@
-// Playback policy: R-rated and age-restricted movie entries are excluded from this channel rotation.
-// Encore is strictly 1980-1999. Every enabled source was checked for a
-// full-length runtime and playable YouTube embedding when this list was made.
+// Encore resilient catalog: strictly 1980-1999.
+// Paid YouTube Movies/DRM listings are excluded. The live rotation uses ordinary
+// full-length uploads instead of protected storefront IDs.
 window.HERMIT_CATALOG = [
-  { id:"ENC-001", title:"Masters of the Universe", year:1987, collection:"Fantasy Adventure", runtimeSeconds:6346, videoId:"NTG2PESRurY", source:"YouTube Movies", networkChannel:"Encore", cleared:true },
-  { id:"ENC-002", title:"UHF", year:1989, collection:"Cult Comedy", runtimeSeconds:5833, videoId:"uAiyO8oEG4E", source:"YouTube Movies", networkChannel:"Encore", cleared:true },
-  { id:"ENC-005", title:"The Karate Kid", year:1984, collection:"Feel-Good Classic", runtimeSeconds:7616, videoId:"-slifyirmX0", source:"YouTube Movies", networkChannel:"Encore", cleared:true },
-  { id:"ENC-006", title:"The Dark Crystal", year:1982, collection:"Fantasy World", runtimeSeconds:5596, videoId:"4XMRm9igLGo", source:"YouTube Movies", networkChannel:"Encore", cleared:true },
-  { id:"ENC-007", title:"Labyrinth", year:1986, collection:"Fantasy Adventure", runtimeSeconds:6072, videoId:"lL_Q0VtrTxU", source:"YouTube Movies", networkChannel:"Encore", cleared:true },
-  { id:"ENC-008", title:"Bill & Ted's Excellent Adventure", year:1989, collection:"Time-Travel Comedy", runtimeSeconds:5390, videoId:"a72W8hP9QNE", source:"YouTube Movies", networkChannel:"Encore", cleared:true },
-  { id:"ENC-009", title:"Bill & Ted's Bogus Journey", year:1991, collection:"Afterlife Adventure", runtimeSeconds:5633, videoId:"2nwyLnPj6SI", source:"YouTube Movies", networkChannel:"Encore", cleared:true },
-  { id:"ENC-014", title:"Deathtrap", year:1982, collection:"Mystery Classic", runtimeSeconds:6968, videoId:"t9w1izfm9qI", source:"YouTube Movies", networkChannel:"Encore", cleared:true }
+  { id:"ENC-SAFE-001", title:"Super Fuzz", year:1980, collection:"80s Action Comedy", runtimeSeconds:6000, videoId:"V9Fh3jqMZTk", source:"Established full-length upload", networkChannel:"Encore", cleared:true },
+  { id:"ENC-SAFE-002", title:"Ator: The Fighting Eagle", year:1982, collection:"80s Fantasy Adventure", runtimeSeconds:5880, videoId:"6wRznqH9IbA", source:"TheArchiveMovies", networkChannel:"Encore", cleared:true },
+  { id:"ENC-SAFE-003", title:"Earth Angel", year:1991, collection:"90s Fantasy Comedy", runtimeSeconds:5663, videoId:"jXwC-6tlKqY", source:"TheArchiveMovies", networkChannel:"Encore", cleared:true },
+  { id:"ENC-SAFE-004", title:"Black Fox", year:1995, collection:"90s Western Adventure", runtimeSeconds:5520, videoId:"GI2TFFWrBlc", source:"Established full-length upload", networkChannel:"Encore", cleared:true },
+  { id:"ENC-SAFE-005", title:"Chairman of the Board", year:1998, collection:"90s Comedy", runtimeSeconds:5735, videoId:"jse-_ROi4sI", source:"Ordinary full-length YouTube upload", networkChannel:"Encore", cleared:true }
 ].map(movie => ({ ...movie, posterUrl:"" }));
 
 window.INFINITY_CHANNEL = {
   id:"Encore",
   era:"1980-1999",
   strictEra:true,
-  schedulePolicy:"No title or YouTube video ID may air on another Infinity channel on the same station date."
+  sourcePolicy:"No YouTube Movies DRM IDs, age-restricted videos, trailers, promos or short clips.",
+  schedulePolicy:"Strict 1980-1999 ordinary full-length uploads only."
 };
 
 window.HERMIT_COMMERCIALS = [
