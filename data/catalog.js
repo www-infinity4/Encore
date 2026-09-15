@@ -1,23 +1,32 @@
-// Unique seed bucket 7/8 for Encore.
-// Control Phi's movie source farm expands this channel toward 96 distinct,
-// profile-matched full movies. The seed IDs are never shared with another
-// movie-channel seed catalog.
-(function(){
-  "use strict";
+// Encore resilient catalog: strictly 1980-1999.
+// Paid YouTube Movies/DRM listings are excluded. The live rotation uses ordinary
+// full-length uploads instead of protected storefront IDs.
+window.HERMIT_CATALOG = [
+  { id:"ENC-SAFE-001", title:"Super Fuzz", year:1980, collection:"80s Action Comedy", runtimeSeconds:6000, videoId:"V9Fh3jqMZTk", source:"Established full-length upload", networkChannel:"Encore", cleared:true },
+  { id:"ENC-SAFE-002", title:"Ator: The Fighting Eagle", year:1982, collection:"80s Fantasy Adventure", runtimeSeconds:5880, videoId:"6wRznqH9IbA", source:"TheArchiveMovies", networkChannel:"Encore", cleared:true },
+  { id:"ENC-SAFE-003", title:"Earth Angel", year:1991, collection:"90s Fantasy Comedy", runtimeSeconds:5663, videoId:"jXwC-6tlKqY", source:"TheArchiveMovies", networkChannel:"Encore", cleared:true },
+  { id:"ENC-SAFE-004", title:"Black Fox", year:1995, collection:"90s Western Adventure", runtimeSeconds:5520, videoId:"GI2TFFWrBlc", source:"Established full-length upload", networkChannel:"Encore", cleared:true },
+  { id:"ENC-SAFE-005", title:"Chairman of the Board", year:1998, collection:"90s Comedy", runtimeSeconds:5735, videoId:"jse-_ROi4sI", source:"Ordinary full-length YouTube upload", networkChannel:"Encore", cleared:true }
+].map(movie => ({ ...movie, posterUrl:"" }));
 
-  const rows = [
-    ["Daddy Daughter Trip",5795,"fIhM9MiEN50","Movie Central"],
-    ["Mayberry Man",5927,"a_AwfI9TPY8","EncourageTV"],
-    ["Bunyan & Babe",5093,"_f9pyIOgrAs","Family Central"],
-    ["The Tree That Saved Christmas",5283,"7jhgkEuCfiQ","Family Central"],
-    ["Camp Cool Kids",6265,"y428AwGDCnE","Family Central"],
-    ["Finding Callaro",4768,"2_Cej0gyVhY","Family Central"],
-    ["Santa Claws",5188,"pwOPU84i538","Family Central"],
-    ["The Last Warrior",5628,"1y1B03RysOc","Shout! Studios"],
-    ["Mee-Shee: The Water Giant",5664,"jAYtNYu5pp4","FilmRise Movies"]
-  ];
+window.INFINITY_CHANNEL = {
+  id:"ENCORE",
+  era:"1980-1999",
+  strictEra:true,
+  sourcePolicy:"No YouTube Movies DRM IDs, age-restricted videos, trailers, promos or short clips.",
+  schedulePolicy:"Strict 1980-1999 ordinary full-length uploads only."
+};
 
-  window.HERMIT_CATALOG=rows.map(function(row,index){return{id:"ENCORE-SEED-"+String(index+1).padStart(3,"0"),title:row[0],year:null,collection:"1980s / 1990s Seed",runtimeSeconds:row[1],videoId:row[2],source:row[3],networkChannel:"Encore",contentClass:"Seed Feature",rating:"Unrated",cleared:true,posterUrl:""};});
-  window.INFINITY_CHANNEL={id:"ENCORE",sourcePolicy:"Unique static seed bucket 7/8. Runtime catalog expansion comes from Encore's own Control Phi source profile.",schedulePolicy:"Seven-day no-repeat scheduler. Missing inventory stays empty until unique sources are harvested; it never wraps the seed list."};
-  window.HERMIT_COMMERCIALS=[{id:"AD-001",title:"Encore intermission",durationSeconds:60,videoId:"",cleared:true}];
+window.HERMIT_COMMERCIALS = [
+  { id:"AD-001", title:"Encore intermission", durationSeconds:60, videoId:"", cleared:true },
+  { id:"AD-002", title:"Tonight on Encore", durationSeconds:60, videoId:"", cleared:true },
+  { id:"AD-003", title:"Encore station break", durationSeconds:60, videoId:"", cleared:true }
+];
+
+(function syncInfinityChannels(){
+  if (document.querySelector('script[data-infinity-channels]')) return;
+  const script = document.createElement('script');
+  script.src = 'https://www-infinity4.github.io/TNT/channels.js?v=20260915-live1';
+  script.dataset.infinityChannels = '1';
+  document.head.appendChild(script);
 })();
